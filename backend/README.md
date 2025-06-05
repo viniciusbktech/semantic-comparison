@@ -75,31 +75,34 @@ FIELD_TITLE=Title
 
 ---
 
-## Integração Frontend/Backend e Paginação
-
-O endpoint `/documents` agora retorna:
-```json
-{
-  "documents": [ { ...doc }, ... ],
-  "total": 123
-}
-```
-- O campo `documents` contém os documentos da página atual.
-- O campo `total` informa o total de documentos para paginação no frontend React.
-
-Consulte o README do frontend para detalhes de uso e navegação paginada.
-
----
-
 ## Teoria e Estratégia de Busca
 
 ### 1. **Embeddings e Vetorização**
-- Os campos `Content_vec` e `Title_vec` devem ser vetores gerados por um modelo como o **e5-multilingual**.
+- Os campos `Content_vec` e `Title_vec` devem ser campos do tipo `semantic_text` gerados por um modelo de text_embedding, como o **e5-multilingual**.
 - Isso é pré-requisito para buscas semânticas eficientes.
 
 ### 2. **RRF (Reciprocal Rank Fusion)**
 - A query utiliza o operador `rrf` para combinar múltiplos rankings (ex: similaridade semântica do conteúdo e do título).
 - O RRF aumenta a robustez da busca ao considerar múltiplos aspectos do texto.
+
+**O que é RRF?**
+RRF (Reciprocal Rank Fusion) é uma técnica que combina os resultados de múltiplas consultas, atribuindo pontuações baseadas na posição de cada documento em cada lista de resultados, não diretamente nas pontuações brutas (_score) dessas consultas.
+
+**Como funciona?**
+O RRF calcula a pontuação final de cada documento somando recíprocos das suas posições nas listas parciais:
+
+```
+score = 0.0
+for q in queries:
+    if d in result(q):
+        score += 1.0 / ( k + rank( result(q), d ) )
+return score
+```
+Onde:
+- `k` é uma constante de suavização (tipicamente 60)
+- `q` é uma consulta (por exemplo, busca BM25 ou vetorial)
+- `d` é um documento retornado
+- `rank(result(q), d)` é a posição do documento na lista de resultados daquela consulta
 
 ### 3. **Rerank com Cohere**
 - Após o RRF, os resultados são reranqueados usando o modelo Cohere (via endpoint de inferência configurado no Elastic).
@@ -169,8 +172,6 @@ Após a criação, utilize o nome do endpoint (`cohere-multilingual-rerank`) na 
 - [Cohere Rerank API](https://docs.cohere.com/docs/rerank-reference)
 
 ---
-
-Para dúvidas ou problemas, consulte o código ou abra uma issue no repositório!
 
 Este backend, desenvolvido em FastAPI, provê endpoints para listagem, consulta e comparação semântica de documentos em um índice Elasticsearch.
 

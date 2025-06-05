@@ -27,16 +27,6 @@ semantic_comparison/
 - Node.js 18+
 - Elasticsearch 8+
 
-## Funcionalidades Recentes
-- Listagem de documentos paginada com visual moderno.
-- Feedback visual ao copiar o _id do documento.
-- Navegação entre páginas (React Router).
-- Botão para retornar à tela inicial.
-- Integração frontend-backend robusta e amigável para deploy.
-
-## Deploy
-- Para deploy em produção, recomenda-se uso de proxy reverso (nginx), HTTPS e variáveis de ambiente seguras.
-
 ## Créditos
 - Base de dados: [Kaggle - Folha News](https://www.kaggle.com/datasets/luisfcaldeira/folha-news-of-the-brazilian-newspaper-2024)
 
