@@ -75,6 +75,22 @@ FIELD_TITLE=Title
 
 ---
 
+## Integração Frontend/Backend e Paginação
+
+O endpoint `/documents` agora retorna:
+```json
+{
+  "documents": [ { ...doc }, ... ],
+  "total": 123
+}
+```
+- O campo `documents` contém os documentos da página atual.
+- O campo `total` informa o total de documentos para paginação no frontend React.
+
+Consulte o README do frontend para detalhes de uso e navegação paginada.
+
+---
+
 ## Teoria e Estratégia de Busca
 
 ### 1. **Embeddings e Vetorização**

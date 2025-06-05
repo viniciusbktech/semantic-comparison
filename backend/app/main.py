@@ -14,9 +14,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-@app.get("/documents", response_model=List[Document])
+@app.get("/documents")
 def get_documents(page: int = 1, size: int = 10):
-    return list_documents(page, size)
+    documents, total = list_documents(page, size)
+    return {"documents": documents, "total": total}
 
 @app.get("/documents/{doc_id}", response_model=Document)
 def get_document(doc_id: str):

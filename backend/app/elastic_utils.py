@@ -30,7 +30,7 @@ es = Elasticsearch(
     verify_certs=ELASTIC_VERIFY_CERTS
 )
 
-def list_documents(page: int, size: int) -> List[Document]:
+def list_documents(page: int, size: int):
     resp = es.search(
         index=ELASTIC_INDEX,
         body={
@@ -39,7 +39,9 @@ def list_documents(page: int, size: int) -> List[Document]:
             "query": {"match_all": {}}
         }
     )
-    return [Document(**hit["_source"], id=hit["_id"]) for hit in resp["hits"]["hits"]]
+    documents = [Document(**hit["_source"], id=hit["_id"]) for hit in resp["hits"]["hits"]]
+    total = resp["hits"]["total"]["value"] if isinstance(resp["hits"]["total"], dict) else resp["hits"]["total"]
+    return documents, total
 
 def get_document_by_id(doc_id: str) -> Document:
     resp = es.get(index=ELASTIC_INDEX, id=doc_id, ignore=[404])

@@ -38,5 +38,12 @@ Os arquivos finais ficarão em `build/`.
 - O frontend depende do backend estar rodando e acessível.
 - Para deploy, recomenda-se servir o build estático via nginx, Vercel, Netlify, etc.
 
+## Funcionalidades Recentes
+- Navegação entre páginas com React Router.
+- Listagem de documentos paginada e visualmente moderna.
+- Feedback visual ao copiar o _id do documento.
+- Botão para retornar à tela inicial.
+- Integração robusta com backend FastAPI/Elasticsearch.
+
 ---
 Consulte o [README do backend](../backend/README.md) para detalhes da API e configuração do Elasticsearch.
