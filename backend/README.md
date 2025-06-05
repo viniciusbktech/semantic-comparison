@@ -15,7 +15,7 @@ A aplicação utiliza como fonte principal a base de dados **Folha News** dispon
 - Contém milhares de notícias da Folha de São Paulo, um dos principais jornais do Brasil.
 - Cada registro inclui campos como: `Title`, `Content`, `categories`, `Url`, entre outros.
 - A base é adequada para tarefas de NLP, análise de notícias, classificação, busca semântica e comparação de similaridade textual.
-- Os campos `Content_vec` e `Title_vec` utilizados nesta aplicação são vetores semânticos derivados dos textos originais por modelos de embedding (ex: e5-multilingual).
+- Os campos `Content_vec` e `Title_vec` utilizados nesta aplicação são vetores semânticos derivados dos textos originais por modelos de embedding (ex: e5-multilingual ou distiluse-base-multilingual-cased-v2).
 
 ---
 
@@ -27,6 +27,28 @@ A aplicação utiliza como fonte principal a base de dados **Folha News** dispon
   - Endpoint de inferência configurado para rerank (ex: Cohere rerank-multilingual-v3.0)
 - Vetorização dos campos de texto (`Content_vec` e `Title_vec`) já realizada previamente no Elasticsearch.
 - Indexação baseada na base original: [Folha News Kaggle](https://www.kaggle.com/datasets/luisfcaldeira/folha-news-of-the-brazilian-newspaper-2024)
+
+---
+
+## Ambiente Virtual e Instalação de Dependências
+
+Recomenda-se criar um ambiente virtual Python para isolar as dependências do projeto. Execute os comandos abaixo dentro da pasta `backend`:
+
+### Windows
+```powershell
+python -m venv semantic_comparison-venv
+.\semantic_comparison-venv\Scripts\activate
+pip install -r requirements.txt
+```
+
+### Linux/macOS
+```bash
+python3 -m venv semantic_comparison-venv
+source semantic_comparison-venv/bin/activate
+pip install -r requirements.txt
+```
+
+O diretório do ambiente virtual está listado no `.gitignore` e **não deve ser versionado**.
 
 ---
 
