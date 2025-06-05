@@ -1,7 +1,7 @@
 # Python
 *.pyc
 __pycache__/
-backend/venv/
+backend/semantic_comparison-venv/
 
 # Node.js
 node_modules/
@@ -10,7 +10,6 @@ dist/
 
 # Env files
 backend/.env
-frontend/.env
 
 # IDEs e arquivos temporários
 .DS_Store
