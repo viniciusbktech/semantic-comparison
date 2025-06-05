@@ -1,0 +1,19 @@
+# Python
+*.pyc
+__pycache__/
+backend/venv/
+
+# Node.js
+node_modules/
+build/
+dist/
+
+# Env files
+backend/.env
+frontend/.env
+
+# IDEs e arquivos temporários
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

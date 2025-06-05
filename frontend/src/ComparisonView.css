@@ -1,0 +1,49 @@
+.comparison-view {
+  display: flex;
+  gap: 24px;
+  margin-top: 30px;
+}
+.selected-doc, .similar-docs {
+  flex: 1;
+  background: #f9faff;
+  border-radius: 8px;
+  padding: 22px 18px 18px 18px;
+  box-shadow: 0 2px 12px rgba(60,60,60,0.04);
+}
+.selected-doc h2, .similar-docs h2 {
+  margin-top: 0;
+  font-size: 1.15rem;
+  color: #3a7afe;
+}
+.selected-doc h3 {
+  margin: 10px 0 8px 0;
+  font-size: 1.18rem;
+  color: #222;
+}
+.doc-category {
+  color: #666;
+  font-size: 0.97rem;
+  margin-bottom: 12px;
+}
+.doc-content {
+  color: #222;
+  font-size: 1.02rem;
+  line-height: 1.6;
+}
+.similar-docs ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.similar-item {
+  margin-bottom: 18px;
+}
+.doc-title-link {
+  color: #3a7afe;
+  font-weight: 500;
+  text-decoration: none;
+  font-size: 1.07rem;
+}
+.doc-title-link:hover {
+  text-decoration: underline;
+}
