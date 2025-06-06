@@ -8,12 +8,11 @@ Esta aplicação realiza comparação semântica de notícias utilizando FastAPI
 
 ## Base de Dados Utilizada
 
-A aplicação utiliza como fonte principal a base de dados **Folha News** disponível no Kaggle:
-[https://www.kaggle.com/datasets/luisfcaldeira/folha-news-of-the-brazilian-newspaper-2024](https://www.kaggle.com/datasets/luisfcaldeira/folha-news-of-the-brazilian-newspaper-2024)
+A aplicação utiliza como fonte principal a base de dados [Folha News](https://www.kaggle.com/datasets/luisfcaldeira/folha-news-of-the-brazilian-newspaper-2024) disponível no Kaggle.
 
 **Resumo da base:**
-- Contém milhares de notícias da Folha de São Paulo, um dos principais jornais do Brasil.
-- Cada registro inclui campos como: `Title`, `Content`, `categories`, `Url`, entre outros.
+- Contém aproximadamente 190 mil notícias da Folha de São Paulo.
+- Cada registro inclui campos como referentes à notícia, como título, conteúdo, categoria, URL, entre outros.
 - A base é adequada para tarefas de NLP, análise de notícias, classificação, busca semântica e comparação de similaridade textual.
 - Os campos `Content_vec` e `Title_vec` utilizados nesta aplicação são vetores semânticos derivados dos textos originais por modelos de embedding (ex: e5-multilingual ou distiluse-base-multilingual-cased-v2).
 
@@ -22,11 +21,10 @@ A aplicação utiliza como fonte principal a base de dados **Folha News** dispon
 ## Pré-requisitos
 
 - **Python 3.8+**
-- **Elasticsearch 8+** com:
+- **Elasticsearch 8.15+** com:
   - Suporte a campos vetoriais do tipo `semantic_text` (ex: via modelo e5-multilingual)
   - Endpoint de inferência configurado para rerank (ex: Cohere rerank-multilingual-v3.0)
-- Vetorização dos campos de texto (`Content_vec` e `Title_vec`) já realizada previamente no Elasticsearch.
-- Indexação baseada na base original: [Folha News Kaggle](https://www.kaggle.com/datasets/luisfcaldeira/folha-news-of-the-brazilian-newspaper-2024)
+- Indexação baseada na base original.
 
 ---
 
@@ -47,8 +45,6 @@ python3 -m venv semantic_comparison-venv
 source semantic_comparison-venv/bin/activate
 pip install -r requirements.txt
 ```
-
-O diretório do ambiente virtual está listado no `.gitignore` e **não deve ser versionado**.
 
 ---
 
@@ -106,7 +102,7 @@ Onde:
 
 ### 3. **Rerank com Cohere**
 - Após o RRF, os resultados são reranqueados usando o modelo Cohere (via endpoint de inferência configurado no Elastic).
-- O modelo utilizado é o `cohere-multilingual-rerank` (baseado em `rerank-multilingual-v3.0`).
+- O modelo utilizado é o `rerank-multilingual-v3.0`.
 - É possível criar uma conta gratuita no Cohere e importar o modelo para o cluster Elastic via API key.
 - O campo `inference_id` no .env deve ser ajustado conforme o nome do modelo importado no cluster (nome do inference endpoint).
 
@@ -114,7 +110,7 @@ Onde:
 Execute a seguinte requisição no Dev Tools do Kibana ou via API:
 
 ```json
-PUT _inference/rerank/cohere-multilingual-rerank
+PUT _inference/rerank/<inference_id>
 {
   "service": "cohere",
   "service_settings": {
@@ -126,7 +122,7 @@ PUT _inference/rerank/cohere-multilingual-rerank
 
 Substitua `{API_KEY}` pela sua chave de API Cohere.
 
-Após a criação, utilize o nome do endpoint (`cohere-multilingual-rerank`) na variável `INFERENCE_ID` do seu `.env`.
+Após a criação, utilize o nome do endpoint (`<inference_id>`) na variável `INFERENCE_ID` do seu `.env`.
 
 ### 4. **Normalização de Score**
 - O score final dos similares é normalizado pelo score do próprio documento pesquisado, garantindo que o documento consultado sempre tenha score 1.0 e os similares tenham score relativo a ele.
@@ -148,12 +144,16 @@ Após a criação, utilize o nome do endpoint (`cohere-multilingual-rerank`) na 
         }
       },
       "field": "Title",
-      "inference_id": "cohere-multilingual-rerank",
+      "inference_id": "<inference_id>",
       "inference_text": "<titulo>"
     }
   }
 }
 ```
+
+O RRF, neste cenário, foi utilizado para combinar os resultados das consultas semânticas em cima dos campos de Título e Conteúdo. Além disso, em cada consulta independente, é feito um filtro para recuperação de documentos que compartilham da mesma categoria do documento pesquisado. Isso traz uma camada extra de refinamento da busca, facilitando a recuperação de documentos mais relevantes.
+
+Após o RRF, é feito o rerank com o modelo Cohere, que reordena os documentos recuperados pela RRF baseado na semelhança semântica entre o documento pesquisado e os documentos recuperados através da similaridade semântica no campo Title_vec.
 
 ---
 

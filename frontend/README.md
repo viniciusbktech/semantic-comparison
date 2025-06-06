@@ -36,7 +36,6 @@ Os arquivos finais ficarão em `build/`.
 
 ## Observações
 - O frontend depende do backend estar rodando e acessível.
-- Para deploy, recomenda-se servir o build estático via nginx, Vercel, Netlify, etc.
 
 ## Funcionalidades Recentes
 - Navegação entre páginas com React Router.
@@ -44,6 +43,7 @@ Os arquivos finais ficarão em `build/`.
 - Feedback visual ao copiar o _id do documento.
 - Botão para retornar à tela inicial.
 - Integração robusta com backend FastAPI/Elasticsearch.
+- Título das notícias retornadas pelo Elasticsearch é clicável, permitindo visualizar o conteúdo completo no site da Folha de São Paulo.
 
 ---
 Consulte o [README do backend](../backend/README.md) para detalhes da API e configuração do Elasticsearch.

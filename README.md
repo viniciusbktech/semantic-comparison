@@ -1,19 +1,43 @@
-# Semantic Comparison Project
+# Comparação Semântica com Elasticsearch
 
-Este repositório reúne um sistema completo para comparação semântica de notícias, composto por um backend (FastAPI + Elasticsearch) e um frontend (React).
+Este repositório reúne um sistema criado para comparação semântica de notícias, composto por um backend (FastAPI + Elasticsearch) e um frontend (React).
 
 ## Estrutura do Projeto
 
 ```
 semantic_comparison/
-├── backend/     # API FastAPI + lógica de busca semântica
+├── backend/     # FastAPI + Elasticsearch (busca semântica + rerank)
 ├── frontend/    # Aplicação React (interface web)
-├── README.md    # Este arquivo (overview geral)
 ```
 
 ## Visão Geral
 - **Backend**: expõe endpoints REST para consulta e comparação semântica de notícias usando Elasticsearch, embeddings e rerank.
-- **Frontend**: interface web em React com navegação entre páginas (React Router), listagem paginada e estilizada de documentos, feedback visual ao copiar IDs, e integração robusta com o backend.
+
+1. **Interface do FastAPI**: Possibilita a interação com o backend via interface web.
+
+![FastAPI](back1.png)
+
+2. **Consulta de documentos**: Endpoint que retorna uma lista paginada de documentos.
+
+![Endpoint de consulta de documentos](back2.png)
+
+3. **Comparação semântica**: Endpoint que compara documentos semânticamente com base em embeddings e rerank.
+
+![Endpoint de comparação semântica](back3.png)
+
+- **Frontend**: interface web em React com navegação entre páginas (React Router), listagem paginada e estilizada de documentos e integração com o backend.
+
+1. **Interface do React**: Interface web em React com listagem de documentos e comparação semântica.
+
+![Interface do React](front1.png)
+
+2. **Consulta de documentos**: Página que lista documentos de forma paginada.
+
+![Consulta de documentos](front2.png)
+
+3. **Comparação semântica**: Página que compara documentos semânticamente com base em embeddings e rerank.
+
+![Comparação semântica](front3.png)
 
 ## Como Rodar Localmente
 
@@ -25,7 +49,7 @@ semantic_comparison/
 ## Requisitos Gerais
 - Python 3.8+
 - Node.js 18+
-- Elasticsearch 8+
+- Elasticsearch 8.15+
 
 ## Créditos
 - Base de dados: [Kaggle - Folha News](https://www.kaggle.com/datasets/luisfcaldeira/folha-news-of-the-brazilian-newspaper-2024)
