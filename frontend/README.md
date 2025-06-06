@@ -1,4 +1,4 @@
-# Frontend - Semantic Comparison
+# Frontend
 
 Este diretório contém o frontend React da aplicação de comparação semântica de notícias.
 

@@ -1,4 +1,4 @@
-# Backend - Semantic Comparison API
+# Backend
 
 ## Descrição
 
@@ -200,6 +200,8 @@ Este backend, desenvolvido em FastAPI, provê endpoints para listagem, consulta 
 - `/documents`: Listagem paginada de documentos
 - `/documents/{doc_id}`: Busca documento por ID
 - `/compare/{doc_id}`: Busca híbrida (semântica + categoria) a partir de documento selecionado
+
+A interação direta com o backend se dá por meio da interface do FastAPI, que pode ser acessada em `http://localhost:8000/docs`.
 
 ---
 
