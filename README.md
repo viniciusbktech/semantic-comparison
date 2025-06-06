@@ -1,6 +1,30 @@
-# Comparação Semântica com Elasticsearch
+<p align="center">
+<img width="700px" src="images/project.png">
+</p>
+<h2 align="center"><b>Comparação Semântica com Elasticsearch</b></h2>
 
-Este repositório reúne um sistema criado para comparação semântica de notícias, composto por um backend (FastAPI + Elasticsearch) e um frontend (React).
+<p align="center">
+   <a>
+      <img src="https://img.shields.io/badge/Elastic%20Stack-8.15.0-blue?style=flat&logo=elasticsearch">
+   </a>
+   <a>
+      <img src="https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat" alt="contributions welcome">
+   </a>
+</p>
+
+Este projeto é uma aplicação voltada para comparação semântica de notícias. 
+
+Ele utiliza o modelo [`elastic/multilingual-e5-small`](https://huggingface.co/elastic/multilingual-e5-small) para geração de embeddings e o modelo [`Cohere/rerank-multilingual-v3.0`](https://huggingface.co/Cohere/rerank-multilingual-v3.0) para reranqueamento.
+
+No backend, baseado em **FastAPI** e **Elasticsearch**, as buscas são realizadas por meio da [API](https://www.elastic.co/docs/solutions/search/retrievers-overview) `retriever`, combinando a **RRF (Reciprocal Rank Fusion)** com o `text_similarity_reranker`, permitindo a recuperação semântica dos documentos mais relevantes.
+
+A aplicação compara uma notícia consultada com o restante da base e retorna os conteúdos mais similares. O frontend em **React** oferece uma interface simples e responsiva para navegação.
+
+O objetivo do projeto é servir como modelo para casos de uso que envolvam comparação semântica em grandes volumes de dados, como:
+
+- Recomendação de conteúdo
+- Detecção de duplicidade ou plágio
+- Agrupamento e navegação inteligente em bases de texto
 
 ## Estrutura do Projeto
 
