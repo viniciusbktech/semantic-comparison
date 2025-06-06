@@ -15,25 +15,25 @@ semantic_comparison/
 
 1. **Interface do FastAPI**: Possibilita a interação com o backend via interface web.
 
-![FastAPI](back1.png)
+![FastAPI](images/back1.png)
 
 2. **Consulta de documentos**: Endpoint que retorna uma lista paginada de documentos.
 
-![Endpoint de consulta de documentos](back2.png)
+![Endpoint de consulta de documentos](images/back2.png)
 
 3. **Comparação semântica**: Endpoint que compara documentos semânticamente com base em embeddings e rerank.
 
-![Endpoint de comparação semântica](back3.png)
+![Endpoint de comparação semântica](images/back3.png)
 
 - **Frontend**: interface web em React com navegação entre páginas (React Router), listagem paginada e estilizada de documentos e integração com o backend.
 
 1. **Interface do React**: Interface web em React com listagem de documentos e comparação semântica.
 
-![Interface do React](front1.png)
+![Interface do React](images/front1.png)
 
 2. **Consulta de documentos**: Página que lista documentos de forma paginada.
 
-![Consulta de documentos](front2.png)
+![Consulta de documentos](images/front2.png)
 
 3. **Comparação semântica**: Página que compara documentos semânticamente com base em embeddings e rerank.
 
