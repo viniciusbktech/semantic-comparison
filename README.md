@@ -32,7 +32,8 @@ A aplicação compara uma notícia consultada com o restante da base e retorna o
 O objetivo do projeto é servir como modelo para casos de uso que envolvam comparação semântica em grandes volumes de dados, como:
 
 - Recomendação de conteúdo
-- Detecção de duplicidade ou plágio
+- Detecção de duplicidade
+- Consulta jurídica por similaridade (ex: jurisprudência ou petições similares)
 - Agrupamento e navegação inteligente em bases de texto
 
 ## Estrutura do Projeto
