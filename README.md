@@ -11,7 +11,9 @@ semantic_comparison/
 ```
 
 ## Visão Geral
-- **Backend**: expõe endpoints REST para consulta e comparação semântica de notícias usando Elasticsearch, embeddings e rerank.
+
+### Backend
+Expõe endpoints REST para consulta e comparação semântica de notícias usando Elasticsearch, embeddings e rerank.
 
 1. **Interface do FastAPI**: Possibilita a interação com o backend via interface web.
 
@@ -25,7 +27,8 @@ semantic_comparison/
 
 ![Endpoint de comparação semântica](images/back3.png)
 
-- **Frontend**: interface web em React com navegação entre páginas (React Router), listagem paginada e estilizada de documentos e integração com o backend.
+### Frontend
+Interface web em React com navegação entre páginas (React Router), listagem paginada e estilizada de documentos e integração com o backend.
 
 1. **Interface do React**: Interface web em React com listagem de documentos e comparação semântica.
 
