@@ -1,5 +1,5 @@
 <p align="center">
-<img width="700px" src="images/project.png">
+<img width="700px" src="images/project-removebg-preview.png">
 </p>
 <h2 align="center"><b>Comparação Semântica com Elasticsearch</b></h2>
 
