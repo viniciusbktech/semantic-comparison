@@ -94,9 +94,3 @@ Interface web em React com navegação entre páginas (React Router), listagem p
 ---
 
 Consulte os READMEs de backend e frontend para detalhes de configuração, execução e arquitetura.
-
----
-
-**Para atualizar seu repositório no GitHub:**
-1. Faça commit de todas as alterações locais (`git add . && git commit -m "Atualizações frontend/backend e docs"`).
-2. Faça push para o seu repositório remoto (`git push`).
