@@ -37,7 +37,7 @@ semantic_comparison/
 
 3. **Comparação semântica**: Página que compara documentos semânticamente com base em embeddings e rerank.
 
-![Comparação semântica](front3.png)
+![Comparação semântica](images/front3.png)
 
 ## Como Rodar Localmente
 
